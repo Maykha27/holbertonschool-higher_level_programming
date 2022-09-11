@@ -7,4 +7,4 @@ if __name__ == "__main__":
                                  "." if len == 1 else ":"))
     for i, s in enumerate(argv):
         if i > 0:
-            print("{:d}:{:s}".format(i, s))
+            print("{:d}: {:s}".format(i, s))
