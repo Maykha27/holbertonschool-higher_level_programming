@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 def best_score(a_dictionary):
-    if a_dictionary is Nome:
-        return Nome
+    if a_dictionary is None:
+        return None
 
-    best_score = max(a_dictionary.value(), default=None)
+    b_score = max(a_dictionary.values(), default=None)
     for a, b in a_dictionary.items():
-        if b == best_score:
+        if b == b_score:
             return a
