@@ -1,15 +1,11 @@
 #!/usr/bin/python3
-def safe_print_division(a, b):
+def safe_print_list_integers(my_list=[], x=0):
     p = 0
-    c = 0.0
-    try:
-        c = a / b
-        p = 1
-    except:
-        pass
-    finally:
-        if p == 1:
-            print("Inside result: {}".format(c))
-            return c
-        else:
-            print("Inside result: {}".format("None"))
+    for i in range(0, x):
+        try:
+            print("{:d}".format(my_list[i]), end="")
+            p += 1
+        except (ValueError, TypeError):
+            pass
+    print()
+    return p
