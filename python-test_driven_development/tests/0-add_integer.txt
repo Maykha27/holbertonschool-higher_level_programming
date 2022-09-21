@@ -2,7 +2,7 @@
 
 >>> add_integer(int, b)
 Traceback (most recent call last):
-TypeError: add_integer() missing 1 required positional argument: 'a'
+NameError: name 'b' is not defined
 >>> add_integer('a', 'b')
 Traceback (most recent call last):
 TypeError: a must be an integer
