@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Module add_integer define function
+Modules add_integer define function
 to do add operation and handle Type
 Error
 """
