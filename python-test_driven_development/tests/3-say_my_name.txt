@@ -29,3 +29,6 @@ Traceback (most recent call last):
 TypeError: first_name must be a string
 >>> say_my_name("khady", "Thiam")
 My name is khady Thiam
+
+>>> say_my_name("khady")
+My name is khady
