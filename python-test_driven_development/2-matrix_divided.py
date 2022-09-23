@@ -12,11 +12,11 @@ def matrix_divided(matrix, div):
                             "of integers/floats")
         for item in lists:
             if not isinstance(item, int) and not isinstance(item, float):
-                raise TypeError("matrix must be a matrix (list of lists) "+
+                raise TypeError("matrix must be a matrix (list of lists) " +
                                 "of integers/floats")
     for lists in matrix:
         if len(lists) == 0:
-            raise TypeError("matrix must be a matrix (list of lists) "+
+            raise TypeError("matrix must be a matrix (list of lists) " +
                             "of integers/floats")
     if not isinstance(div, int) and not isintance(div, float):
         raise TypeError("div must be a number")
