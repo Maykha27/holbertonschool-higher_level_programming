@@ -5,7 +5,6 @@ Modules add_integer define function
 to do add operation and handle Type
 Error
 """
-
 def add_integer(a, b=98):
     """ add to integer or float
     Args:
@@ -17,5 +16,3 @@ def add_integer(a, b=98):
     if type(b) not in [int, float]:
         raise TypeError("b must be an integer")
     return int(a) + int(b)
-
-
