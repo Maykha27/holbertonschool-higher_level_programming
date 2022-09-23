@@ -55,8 +55,15 @@ class  TestMaxInteger(unittest.TestCase):
         _list = []
         self.assertEqual(max_integer(_list), None)
 
+    def test_empty_list(self):
+        """Checks the case of an empty list
+        """
+        _list = [1]
+        self.assertEqual(max_integer(_list), 1)
+
+
     def test_void_arg(self):
         self.assertEqual(max_integer(), None)
 
-if __name__ == '__main__':
+if  __name__ == '__main__':
     unittest . main ()
