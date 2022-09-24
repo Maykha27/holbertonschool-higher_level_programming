@@ -3,6 +3,7 @@
 Program that defines a Rectangle
 """
 
+
 class Rectangle:
     """
     Defines methods to create attributes.
@@ -18,7 +19,7 @@ class Rectangle:
         """get the width"""
         return self.__width
 
-     @width.setter
+    @width.setter
     def width(self, value):
         """Set the width and raise"""
         if type(value) != int:
