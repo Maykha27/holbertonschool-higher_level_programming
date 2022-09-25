@@ -74,7 +74,7 @@ class Square:
 
         return self.__size ** 2
 
-    """def my_print(self):""""
+    def my_print(self):
         """Prints out a grid of #'s representing the sqaure
         prints a blank line if size is 0
         also moves the sqaure to match position
@@ -87,4 +87,4 @@ class Square:
             print()
         for x in range(0, self.__size):
             print("{}{}".format(" " * self.__position[0], "#" * self.__size))
-            frhdsl./
+
