@@ -7,8 +7,8 @@ Class BaseGeometry based in the last task
 class BaseGeometry:
     """BaseGeometry classe"""
 
-    def area(self)
-    """'area()' method"""
+    def area(self):
+        """area() method"""
         raise Exception("area() is not implemented")
 
     def integer_validator(self, name, value):
