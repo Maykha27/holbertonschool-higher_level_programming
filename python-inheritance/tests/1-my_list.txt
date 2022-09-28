@@ -52,5 +52,3 @@ Case #4: integers numbers
 [2, 1, 3]
 >>> my_list.print_sorted()
 [1, 2, 3]
->>> print(my_list)
-[2, 1, 3] 
