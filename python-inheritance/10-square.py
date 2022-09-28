@@ -27,6 +27,8 @@ class Rectangle(BaseGeometry):
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
 
 class Square(Rectangle):
+    """Square data that inherits from Rectangle"""
+
     def __init__(self, size):
         self.integer_validator("size", size)
         self.__size = size
