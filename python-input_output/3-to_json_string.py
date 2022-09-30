@@ -7,4 +7,5 @@ import json
 
 
 def to_json_string(my_obj):
+    """the fonction to return"""
     return json.dumps(my_obj)
