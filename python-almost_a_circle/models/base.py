@@ -9,120 +9,120 @@ class Base:
 
     __nb_objects = 0
 
-    def  __init__ ( self ,  id = None ):
-        "'Constructeur."'
-        si  l'id  n'est  pas  Aucun :
-            auto . id  =  id
-        autre chose :
-            De la Base . __nb_objets  +=  1
-            auto . id  =  Base . __nb_objets
+    def __init__(self, id=None):
+        '''Constructor.'''
+        if id is not None:
+            self.id = id
+        else:
+            Base.__nb_objects += 1
+            self.id = Base.__nb_objects
 
-    @ staticmethod
-    def  to_json_string ( list_dictionaries ):
-        "'Jsonifies un dictionnaire, donc il est tout à fait juste et plus."'
-        si  list_dictionaries  est  Aucune  ou  pas  list_dictionaries :
-            retour  "[]"
-        autre chose :
-            retour  dumps ( list_dictionaries )
+    @staticmethod
+    def to_json_string(list_dictionaries):
+        '''Jsonifies a dictionary so it's quite rightly and longer.'''
+        if list_dictionaries is None or not list_dictionaries:
+            return "[]"
+        else:
+            return dumps(list_dictionaries)
 
-    @ staticmethod
-    def  from_json_string ( json_string ):
-        "'Unjsonifies un dictionnaire."'
-        si  json_string  est  Aucune  ou  pas  json_string :
-            de retour  []
-        de retour de  charges ( json_string )
+    @staticmethod
+    def from_json_string(json_string):
+        '''Unjsonifies a dictionary.'''
+        if json_string is None or not json_string:
+            return []
+        return loads(json_string)
 
-    @ classmethod
-    def  save_to_file ( cls ,  list_objs ):
-        ""Permet de gagner du jsonified objet dans un fichier."'
-        si  list_objs  est  pas  Aucun :
-            list_objs  =  [ o . to_dictionary ()  pour  o  dans  list_objs ]
-        avec  open ( "{}.json" . format ( cls . __nom__ ),  "w" ,  encoding = "utf-8" )  comme  f :
-            f . écrire ( cls . to_json_string ( list_objs ))
+    @classmethod
+    def save_to_file(cls, list_objs):
+        '''Saves jsonified object to file.'''
+        if list_objs is not None:
+            list_objs = [o.to_dictionary() for o in list_objs]
+        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
+            f.write(cls.to_json_string(list_objs))
 
-    @ classmethod
-    def  load_from_file ( cls ):
-        ""Charge de chaîne à partir d'un fichier et unjsonifies."'
-        à partir d'  os  d'importation  chemin
-        fichier  =  "{}.json" . format ( cls . __nom__ )
-        si  pas  de chemin d'accès . isfile ( fichier ):
-            de retour  []
-        avec  open ( fichier ,  "r" ,  encoding = "utf-8" )  comme  f :
-            de retour  [ cls . créer ( ** d )  pour  d  dans  cls . from_json_string ( f . lire ())]
+    @classmethod
+    def load_from_file(cls):
+        '''Loads string from file and unjsonifies.'''
+        from os import path
+        file = "{}.json".format(cls.__name__)
+        if not path.isfile(file):
+            return []
+        with open(file, "r", encoding="utf-8") as f:
+            return [cls.create(**d) for d in cls.from_json_string(f.read())]
 
-    @ classmethod
-    def  créer ( cls ,  ** dictionnaire ):
-        "'Les charges d'instance à partir du dictionnaire."'
-        à partir de  modèles . rectangle  d'importation  Rectangle
-        à partir de  modèles . carré  d'importation  Carré
-        si  cls  est  Rectangle :
-            nouveau  =  Rectangle ( 1 ,  1 )
-        elif  cls  est  Carré :
-            nouveau  =  Carré ( 1 )
-        autre chose :
-            nouveau  =  Aucun
-        de nouvelles . mise à jour ( ** dictionnaire )
-        de retour de  nouveau
+    @classmethod
+    def create(cls, **dictionary):
+        '''Loads instance from dictionary.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls is Rectangle:
+            new = Rectangle(1, 1)
+        elif cls is Square:
+            new = Square(1)
+        else:
+            new = None
+        new.update(**dictionary)
+        return new
 
-    @ classmethod
-    def  save_to_file_csv ( cls ,  list_objs ):
-        ""Permet de gagner de l'objet au format de fichier csv."'
-        à partir de  modèles . rectangle  d'importation  Rectangle
-        à partir de  modèles . carré  d'importation  Carré
-        si  list_objs  est  pas  Aucun :
-            si  cls  est  Rectangle :
-                list_objs  =  [[ o . id ,  o . largeur ,  o . hauteur ,  o . x ,  o . y ]
-                             pour  ou  dans  list_objs ]
-            autre chose :
-                list_objs  =  [[ ou . id ,  ou . taille ,  ou . x ,  ou . et ]
-                             pour  ou  dans  list_objs ]
-        avec  open ( '{}.csv' . format ( cls . __nom__ ),  'w' ,  newline = " ,
-                  encoding = 'utf-8' )  comme  f :
-            auteur  =  csv . auteur ( f )
-            de l'écrivain . writerows ( list_objs )
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        '''Saves object to csv file.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if list_objs is not None:
+            if cls is Rectangle:
+                list_objs = [[o.id, o.width, o.height, o.x, o.y]
+                             for o in list_objs]
+            else:
+                list_objs = [[o.id, o.size, o.x, o.y]
+                             for o in list_objs]
+        with open('{}.csv'.format(cls.__name__), 'w', newline='',
+                  encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerows(list_objs)
 
-    @ classmethod
-    def  load_from_file_csv ( cls ):
-        "'Les charges de l'objet au format de fichier csv."'
-        à partir de  modèles . rectangle  d'importation  Rectangle
-        à partir de  modèles . carré  d'importation  Carré
-        ret  =  []
-        avec  open ( '{}.csv' . format ( cls . __nom__ ),  'r' ,  newline = " ,
-                  encoding = 'utf-8' )  comme  f :
-            lecteur  =  csv . lecteur ( f )
-            pour  ligne  dans le  lecteur :
-                ligne  =  [ int ( r )  pour  r  en  ligne ]
-                si  cls  est  Rectangle :
-                    d  =  { "id" :  row [ 0 ],  "width" :  la ligne [ 1 ],  "height" :  la ligne [ 2 ],
-                         "x" :  la ligne [ 3 ],  "y" :  la ligne [ 4 ]}
-                autre chose :
-                    d  =  { "id" :  row [ 0 ],  "taille" :  la ligne [ 1 ],
-                         "x" :  la ligne [ 2 ],  "y" :  row [ 3 ]}
-                ret . append ( cls . créer ( ** d ))
-        retour  ret
+    @classmethod
+    def load_from_file_csv(cls):
+        '''Loads object to csv file.'''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        ret = []
+        with open('{}.csv'.format(cls.__name__), 'r', newline='',
+                  encoding='utf-8') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                row = [int(r) for r in row]
+                if cls is Rectangle:
+                    d = {"id": row[0], "width": row[1], "height": row[2],
+                         "x": row[3], "y": row[4]}
+                else:
+                    d = {"id": row[0], "size": row[1],
+                         "x": row[2], "y": row[3]}
+                ret.append(cls.create(**d))
+        return ret
 
-    @ staticmethod
-    def  tirage ( list_rectangles ,  list_squares ):
-        l'importation  de la tortue
-        l'importation  de temps
-        de  random  import  randrange
-        la tortue . Écran (). colormode ( 255 )
-        pour  je  dans  list_rectangles  +  list_squares :
-            t  =  tortue . Tortue ()
-            t . couleur (( randrange ( 255 ),  randrange ( 255 ),  randrange ( 255 )))
-            t . pensize ( 1 )
-            t . penup ()
-            t . pendown ()
-            t . setpos (( j' . x  +  t . pos ()[ 0 ],  j' . y  -  t . pos ()[ 1 ]))
-            t . pensize ( 10 )
-            t . avant ( j' . la largeur )
-            t . gauche ( 90 )
-            t . avant ( j' . hauteur )
-            t . gauche ( 90 )
-            t . avant ( j' . la largeur )
-            t . gauche ( 90 )
-            t . avant ( j' . hauteur )
-            t . gauche ( 90 )
-            t . end_fill ()
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        import turtle
+        import time
+        from random import randrange
+        turtle.Screen().colormode(255)
+        for i in list_rectangles + list_squares:
+            t = turtle.Turtle()
+            t.color((randrange(255), randrange(255), randrange(255)))
+            t.pensize(1)
+            t.penup()
+            t.pendown()
+            t.setpos((i.x + t.pos()[0], i.y - t.pos()[1]))
+            t.pensize(10)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.forward(i.width)
+            t.left(90)
+            t.forward(i.height)
+            t.left(90)
+            t.end_fill()
 
-        temps . sommeil ( 5 ) 
+        time.sleep(5)
