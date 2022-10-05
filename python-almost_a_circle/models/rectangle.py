@@ -92,13 +92,34 @@ class Rectangle(Base):
         if y is not None:
             self.y = y
 
+
     def update(self, *args, **kwargs):
-        '''Updates instances attributes via no-keyword & keyword args.'''
-        # print(args, kwargs)
-        if args:
-            self.__update(*args)
-        elif kwargs:
-            self.__update(**kwargs)
+        """
+        function assigns an argument to each attribute
+        """
+        if len(args):
+            for i, j in enumerate(args):
+                if i == 0:
+                    self.id = j
+                if i == 1:
+                    self.width = j
+                if i == 2:
+                    self.height = j
+                if i == 3:
+                    self.x = j
+                if i == 4:
+                    self.y = j
+        else:
+            if "id" in kwargs:
+                self.id = kwargs["id"]
+            if "width" in kwargs:
+                self.width = kwargs["width"]
+            if "height" in kwargs:
+                self.height = kwargs["height"]
+            if "x" in kwargs:
+                self.x = kwargs["x"]
+            if "y" in kwargs:
+                self.y = kwargs["y"]
 
     def to_dictionary(self):
         '''Returns dictionary representation of this class.'''
