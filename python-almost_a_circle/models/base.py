@@ -5,7 +5,7 @@ import csv
 
 
 class Base:
-    '''A representation of the base of our OOP hierarchy.'''
+    '''Write the first class Base.'''
 
     __nb_objects = 0
 
