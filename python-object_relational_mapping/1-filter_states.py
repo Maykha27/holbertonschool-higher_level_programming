@@ -5,6 +5,7 @@ from the database hbtn_0e_0_usa
 """
 
 import MySQLdb
+from sys import argv
 
 if__name__ == "__main__":
     db = MySQLdb.connect(host='localhost',
