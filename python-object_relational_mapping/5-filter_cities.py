@@ -10,10 +10,7 @@ if__name__== "__main__":
                         passwd=sys.argv[2],
                         db=sys.argv[3])
     c = db.cursor()
-    c.execute("SELECT * FROM `cities` as `c` \
-                INNER JOIN `states` as `s` \
-                    ON `c`.`states_id` = `s`.`id` \
-                ORDER BY `c`.`id`")
+    c.execute("SELECT * FROM `cities` as `c` \ INNER JOIN `states` as `s` \ON `c`.`states_id` = `s`.`id` \ORDER BY `c`.`id`")
     print(", ".join([ct[2] for ct in c.fetchall() if ct[4] == sys.argv[4]]))
 
 
