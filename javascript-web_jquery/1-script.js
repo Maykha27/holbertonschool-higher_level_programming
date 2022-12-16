@@ -1,2 +1,3 @@
 // Write a JavaScript script that updates the text color
-$('header').css('color','#FF0000')
+const $ = window.$;
+$('header').css('color', '#FF0000');

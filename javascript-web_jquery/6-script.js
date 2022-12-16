@@ -1,5 +1,6 @@
 #!/usr/bin/node
 // JavaScript script that updates the text of the <header> element to New
+
 const newSquare = require('./5-square');
 
 class Square extends newSquare {
